@@ -64,6 +64,9 @@ class mobile_core {
 			'formhash' => FORMHASH,
 			'ismoderator' => $_G['forum']['ismoderator'],
 			'readaccess' => $_G['group']['readaccess'],
+			// added by oxyflour to support notifications
+			'member_pm' => $_G['member']['newpm'],
+			'member_prompt' => $_G['member']['newprompt'],
 		);
 		if(!empty($_GET['submodule']) == 'checkpost') {
 			$apifile = 'source/plugin/mobile/api/'.$_GET['version'].'/sub_checkpost.php';
