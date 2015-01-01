@@ -13,7 +13,8 @@ if(!defined('IN_MOBILE_API')) {
 }
 
 $_GET['mod'] = 'space';
-$_GET['do'] = 'profile';
+// by oxyflour
+$_GET['do'] = isset($_GET['do']) ? $_GET['do'] : 'profile';
 include_once 'home.php';
 
 class mobile_api {
@@ -28,6 +29,7 @@ class mobile_api {
 		$data = $GLOBALS['space'];
 		unset($data['password'], $data['email'], $data['regip'], $data['lastip'], $data['regip_loc'], $data['lastip_loc']);
 		$variable = array(
+			'list' => $GLOBALS['list'],
 			'space' => $data,
 			'extcredits' => $_G['setting']['extcredits'],
 		);
