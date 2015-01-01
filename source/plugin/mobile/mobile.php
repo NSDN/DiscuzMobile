@@ -21,7 +21,9 @@ $modules = array('extends', 'buyattachment', 'buythread', 'checkpost', 'connect'
 		'login', 'myfavforum', 'myfavthread', 'mypm', 'mythread',
 		'newthread', 'profile', 'publicpm', 'register', 'seccode',
 		'secure', 'sendpm', 'sendreply', 'sub_checkpost', 'sublist',
-		'toplist', 'viewthread', 'uploadavatar', 'pollvote', 'forumimage');
+		'toplist', 'viewthread', 'uploadavatar', 'pollvote', 'forumimage',
+		// add by oxyflour to support adding comments
+		'addcomment', 'morecomment', 'editpost', 'threadimage', 'threadcover', 'search');
 
 if(!in_array($_GET['module'], $modules)) {
 	mobile_core::result(array('error' => 'module_not_exists'));
