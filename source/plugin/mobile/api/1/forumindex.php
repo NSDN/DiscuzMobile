@@ -30,7 +30,8 @@ class mobile_api {
 			'setting_bbclosed' => $_G['setting']['bbclosed'],
 			'group' => mobile_core::getvalues($_G['group'], array('groupid', 'grouptitle', '/^allow.+?$/')),
 			'catlist' => array_values(mobile_core::getvalues($GLOBALS['catlist'], array('/^\d+$/'), array('fid', 'name', 'forums'))),
-			'forumlist' => array_values(mobile_core::getvalues($GLOBALS['forumlist'], array('/^\d+$/'), array('fid', 'name', 'threads', 'posts', 'redirect', 'todayposts', 'description'))),
+			// 'icon' is added by oxyflour to support board icons
+			'forumlist' => array_values(mobile_core::getvalues($GLOBALS['forumlist'], array('/^\d+$/'), array('fid', 'name', 'threads', 'posts', 'redirect', 'todayposts', 'description', 'icon'))),
 		);
 		mobile_core::result(mobile_core::variable($variable));
 	}

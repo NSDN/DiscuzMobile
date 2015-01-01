@@ -33,7 +33,8 @@ class mobile_api {
 			'forum' => mobile_core::getvalues($_G['forum'], array('fid', 'fup', 'name', 'threads', 'posts', 'rules', 'autoclose', 'password')),
 			'group' => mobile_core::getvalues($_G['group'], array('groupid', 'grouptitle')),
 			'forum_threadlist' => mobile_core::getvalues($_G['forum_threadlist'], array('/^\d+$/'), array('tid', 'author', 'authorid', 'subject', 'subject', 'dbdateline', 'dateline', 'dblastpost', 'lastpost', 'lastposter', 'attachment', 'replies', 'readperm', 'views')),
-			'sublist' => mobile_core::getvalues($GLOBALS['sublist'], array('/^\d+$/'), array('fid', 'name', 'threads', 'todayposts', 'posts')),
+			// @oxyflour
+			'sublist' => mobile_core::getvalues($GLOBALS['sublist'], array('/^\d+$/'), array('fid', 'name', 'threads', 'todayposts', 'posts', 'icon')),
 			'tpp' => $_G['tpp'],
 			'page' => $GLOBALS['page'],
 		);
