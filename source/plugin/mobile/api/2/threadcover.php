@@ -49,7 +49,7 @@ class mobile_api {
 		$tid = intval($_G['gp_tid']);
 
 		if ($tid > 0) {
-			$query = DB::query("SELECT message FROM ".DB::table('forum_post')." WHERE tid='$tid' LIMIT 5");
+			$query = DB::query("SELECT message FROM ".DB::table('forum_post')." WHERE tid='$tid' ORDER BY pid LIMIT 5");
 			while ($post = DB::fetch($query)) {
 				$message = $post['message'];
 
