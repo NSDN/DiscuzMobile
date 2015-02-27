@@ -30,7 +30,6 @@ class mobile_api {
 		unset($data['password'], $data['email'], $data['regip'], $data['lastip'], $data['regip_loc'], $data['lastip_loc']);
 		$variable = array(
 			'list' => $GLOBALS['list'],
-			'hiddennum' => $GLOBALS['hiddennum'],
 			'space' => $data,
 			'extcredits' => $_G['setting']['extcredits'],
 		);

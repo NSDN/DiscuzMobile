@@ -30,6 +30,7 @@ class mobile_api {
 			'data' => array_values(mobile_core::getvalues($GLOBALS['list'], array('/^.+?$/'),
 				array('tid', 'fid', 'author', 'authorid', 'dbdateline', 'dateline', 'replies', 'dblastpost', 'lastpost', 'lastposter', 'subject', 'attachment', 'views'))),
 			'perpage' => $GLOBALS['perpage'],
+			'hiddennum' => $GLOBALS['hiddennum'],
 		);
 		mobile_core::result(mobile_core::variable($variable));
 	}
