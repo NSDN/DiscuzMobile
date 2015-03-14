@@ -23,7 +23,7 @@ $modules = array('extends', 'buyattachment', 'buythread', 'checkpost', 'connect'
 		'secure', 'sendpm', 'sendreply', 'sub_checkpost', 'sublist',
 		'toplist', 'viewthread', 'uploadavatar', 'pollvote', 'forumimage',
 		// add by oxyflour to support adding comments
-		'addcomment', 'morecomment', 'editpost', 'threadimage', 'threadcover', 'search', 'friendcp');
+		'addcomment', 'morecomment', 'editpost', 'threadimage', 'threadcover', 'search', 'friendcp', 'topicadmin');
 
 if(!in_array($_GET['module'], $modules)) {
 	mobile_core::result(array('error' => 'module_not_exists'));
