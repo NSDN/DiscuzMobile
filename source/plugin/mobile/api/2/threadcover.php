@@ -38,8 +38,13 @@ function getFirstAttachmentId($message) {
 }
 
 function getFirstImageSrc($message) {
-	if (preg_match("/\[img[^\]]*\]([^\[]+)\[\/img\]/", $message, $matches))
-		return $matches[1];
+	if (preg_match("/\[img[^\]]*\]([^\[]+)\[\/img\]/", $message, $matches)) {
+		$src = $matches[1];
+		$parse = parse_url($src);
+		// Note: www.nyasama.com is the image server
+		if ($parse['host'] == 'www.nyasama.com')
+			return $src.'.thumb.'.pathinfo($src, PATHINFO_EXTENSION);
+	}
 	return '';
 }
 
@@ -64,20 +69,15 @@ class mobile_api {
 					exit;
 				}
 
-				/*
-				 * Note: disabled
-				 *
-				if (!empty($src = getFirstImageSrc($message))) {
+				if (($src = getFirstImageSrc($message)) != '') {
 					header('location: '.$src);
 					exit;
 				}
-				*/
 			}
 		}
 
-		header('location: '.$_G['siteurl'].'static/image/common/none.gif');
+		header("HTTP/1.0 404 Not Found");
 		exit;
-
 	}
 }
 ?>
