@@ -39,11 +39,8 @@ function getFirstAttachmentId($message) {
 
 function getFirstImageSrc($message) {
 	if (preg_match("/\[img[^\]]*\]([^\[]+)\[\/img\]/", $message, $matches)) {
-		$src = $matches[1];
-		$parse = parse_url($src);
-		// Note: www.nyasama.com is the image server
-		if ($parse['host'] == 'www.nyasama.com')
-			return $src.'.thumb.'.pathinfo($src, PATHINFO_EXTENSION);
+		if ($src = $matches[1])
+			return 'http://oxyflour.sinaapp.com/image-cache/?url='.$src;
 	}
 	return '';
 }
