@@ -40,7 +40,7 @@ class mobile_api {
 			'ppp' => $_G['ppp'],
 			'setting_rewriterule' => $_G['setting']['rewriterule'],
 			'setting_rewritestatus' => $_G['setting']['rewritestatus'],
-			'forum_threadpay' => $_G['forum_threadpay'],
+			'forum_threadpay' => $_G['forum_threadpay'] ? 'true' : 'false',
 			'cache_custominfo_postno' => $_G['cache']['custominfo']['postno'],
 		);
 
