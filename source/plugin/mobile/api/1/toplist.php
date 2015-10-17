@@ -4,9 +4,8 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
  *      This is NOT a freeware, use is subject to license terms
  *
- *      $Id: toplist.php 28687 2012-03-08 03:30:54Z monkey $
+ *      $Id: toplist.php 34314 2014-02-20 01:04:24Z nemohou $
  */
-//note 版块forum >> toplist(置顶列表) @ Discuz! X2.0
 
 if(!defined('IN_MOBILE_API')) {
 	exit('Access Denied');
@@ -17,17 +16,15 @@ include_once 'forum.php';
 
 class mobile_api {
 
-	//note 程序模块执行前需要运行的代码
 	function common() {
 	}
 
-	//note 程序模板输出前运行的代码
 	function output() {
 		global $_G;
 		$threads = array();
 		loadcache('mobile_toplist_'.$_G['fid']);
 		if(!$_G['cache']['mobile_toplist_'.$_G['fid']] || TIMESTAMP - $_G['cache']['mobile_toplist_'.$_G['fid']]['expiration'] > 3600) {
-			$query = DB::query("SELECT * FROM ".DB::table('forum_thread')." WHERE tid IN (".$GLOBALS['stickytids'].") ORDER BY lastpost DESC");
+			$query = DB::query("SELECT * FROM ".DB::table('forum_thread')." WHERE tid IN (".dimplode($GLOBALS['stickytids']).") ORDER BY lastpost DESC");
 			while($thread = DB::fetch($query)) {
 				$threads[] = $thread;
 			}
@@ -35,12 +32,12 @@ class mobile_api {
 			while($thread = DB::fetch($query)) {
 				$threads[] = $thread;
 			}
-			save_syscache('mobile_toplist_'.$_G['fid'], array('variable' => $threads, 'expiration' => TIMESTAMP));
+			savecache('mobile_toplist_'.$_G['fid'], array('variable' => $threads, 'expiration' => TIMESTAMP));
 		} else {
 			$threads = $_G['cache']['mobile_toplist_'.$_G['fid']]['variable'];
 		}
 		$variable = array(
-			'forum_threadlist' => mobile_core::getvalues($threads, array('/^\d+$/'), array('tid', 'author', 'authorid', 'subject', 'subject', 'dateline', 'lastpost', 'lastposter', 'attachment', 'replies', 'views')),
+			'forum_threadlist' => mobile_core::getvalues($threads, array('/^\d+$/')),
 		);
 		$variable['forum']['password'] = $variable['forum']['password'] ? '1' : '0';
 		mobile_core::result(mobile_core::variable($variable));

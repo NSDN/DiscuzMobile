@@ -4,9 +4,8 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
  *      This is NOT a freeware, use is subject to license terms
  *
- *      $Id: buyattachment.php 28204 2012-02-24 04:51:33Z monkey $
+ *      $Id: buyattachment.php 34314 2014-02-20 01:04:24Z nemohou $
  */
-//note 帖子thread >> buyattachment(购买附件) @ Discuz! X2.0
 
 if(!defined('IN_MOBILE_API')) {
 	exit('Access Denied');
@@ -18,11 +17,9 @@ include_once 'forum.php';
 
 class mobile_api {
 
-	//note 程序模块执行前需要运行的代码
 	function common() {
 	}
 
-	//note 程序模板输出前运行的代码
 	function output() {
 		global $_G;
 		$variable = array(

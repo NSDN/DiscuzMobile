@@ -4,9 +4,8 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
  *      This is NOT a freeware, use is subject to license terms
  *
- *      $Id: sub_checkpost.php 27969 2012-02-20 01:21:30Z monkey $
+ *      $Id: sub_checkpost.php 32489 2013-01-29 03:57:16Z monkey $
  */
-//note checkpost.sub @ Discuz! X2.0
 
 if(!defined('IN_MOBILE_API')) {
 	exit('Access Denied');
@@ -60,9 +59,18 @@ class mobile_api_sub {
 		if($allowupload) {
 			$attachextensions = !$_G['group']['attachextensions'] ? $mobile_attachextensions : array_map('trim', explode(',', $_G['group']['attachextensions']));
 			$allowupload = $forummaxattachsize = array();
-			$query = DB::query("SELECT * FROM ".DB::table('forum_attachtype'));
-			while($row = DB::fetch($query)) {
-				$forummaxattachsize[$row['extension']] = $row['maxsize'];
+			loadcache('attachtype');
+			if(isset($_G['cache']['attachtype'][$_G['forum']['fid']])) {
+				$attachtype = $_G['cache']['attachtype'][$_G['forum']['fid']];
+			} elseif(isset($_G['cache']['attachtype'][0])) {
+				$attachtype = $_G['cache']['attachtype'][0];
+			} else {
+				$attachtype = array();
+			}
+			if($attachtype) {
+				foreach($attachtype as $extension => $maxsize) {
+					$forummaxattachsize[$extension] = $maxsize;
+				}
 			}
 			foreach($mobile_attachextensions as $ext) {
 				if(in_array($ext, $attachextensions)) {

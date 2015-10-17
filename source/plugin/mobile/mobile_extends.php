@@ -4,10 +4,9 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
  *      This is NOT a freeware, use is subject to license terms
  *
- *      $Id: mobile_extends.php 31282 2012-08-03 02:30:10Z zhangjie $
+ *      $Id: mobile_extends.php 31700 2012-09-24 03:46:59Z zhangjie $
  */
 
-//note 本类用于对手机接口进行开放数据源扩展.
 
 if(!defined('IN_MOBILE_API')) {
 	exit('Access Denied');
@@ -23,8 +22,7 @@ if(empty($_GET['identifier']) && !empty($_GET['check'])) {
 }
 
 
-$discuz = & discuz_core::instance();
-$discuz->init();
+C::app()->init();
 define('HOOKTYPE', 'hookscript');
 hookscript('common', 'global');
 hookscript('global', 'global');

@@ -3,9 +3,8 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
 *      This is NOT a freeware, use is subject to license terms
 *
-*      $Id: forumimage.php 32061 2012-11-06 02:41:00Z zhangjie $
+*      $Id: forumimage.php 32489 2013-01-29 03:57:16Z monkey $
 */
-//note 生成获取缩略图
 
 if(!defined('IN_MOBILE_API')) {
 	exit('Access Denied');
@@ -16,21 +15,21 @@ include_once 'forum.php';
 class mobile_api {
 	function common() {
 		global $_G;
-		if(!defined('IN_DISCUZ') || empty($_G['gp_aid']) || empty($_G['gp_size']) || empty($_G['gp_key'])) {
+		if(!defined('IN_DISCUZ') || empty($_GET['aid']) || empty($_GET['size']) || empty($_GET['key'])) {
 			header('location: '.$_G['siteurl'].'static/image/common/none.gif');
 			exit;
 		}
 
 		$allowsize = array('960x960', '268x380', '266x698', '2000x2000');
-		if(!in_array($_G['gp_size'], $allowsize)) {
+		if(!in_array($_GET['size'], $allowsize)) {
 			header('location: '.$_G['siteurl'].'static/image/common/none.gif');
 			exit;
 		}
 
-		$nocache = !empty($_G['gp_nocache']) ? 1 : 0;
-		$daid = intval($_G['gp_aid']);
-		$type = !empty($_G['gp_type']) ? $_G['gp_type'] : 'fixwr';
-		list($w, $h) = explode('x', $_G['gp_size']);
+		$nocache = !empty($_GET['nocache']) ? 1 : 0;
+		$daid = intval($_GET['aid']);
+		$type = !empty($_GET['type']) ? $_GET['type'] : 'fixwr';
+		list($w, $h) = explode('x', $_GET['size']);
 		$dw = intval($w);
 		$dh = intval($h);
 		$thumbfile = 'image/'.$daid.'_'.$dw.'_'.$dh.'.jpg';
@@ -44,13 +43,13 @@ class mobile_api {
 
 		define('NOROBOT', TRUE);
 
-		$id = !empty($_G['gp_atid']) ? $_G['gp_atid'] : $daid;
-		if(md5($id.'|'.$dw.'|'.$dh) != $_G['gp_key']) {
+		$id = !empty($_GET['atid']) ? $_GET['atid'] : $daid;
+		if(md5($id.'|'.$dw.'|'.$dh) != $_GET['key']) {
 			dheader('location: '.$_G['siteurl'].'static/image/common/none.gif');
 		}
 
-		if($attach = DB::fetch(DB::query("SELECT * FROM ".DB::table(getattachtablebyaid($daid))." WHERE aid='$daid' AND isimage IN ('1', '-1')"))) {
-			if(!$dw && !$dh && $attach['tid'] != $daid) {
+		if($attach = C::t('forum_attachment_n')->fetch('aid:'.$daid, $daid, array(1, -1))) {
+			if(!$dw && !$dh && $attach['tid'] != $id) {
 			       dheader('location: '.$_G['siteurl'].'static/image/common/none.gif');
 			}
 			dheader('Expires: '.gmdate('D, d M Y H:i:s', TIMESTAMP + 3600).' GMT');
