@@ -122,11 +122,6 @@ class mobile_api {
 
 		$variable['forum']['password'] = $variable['forum']['password'] ? '1' : '0';
 
-		// @oxyflour: hide content of first post if $variable['forum_threadpay'] == true (unpaied)
-		if ($variable['forum_threadpay'] && $variable['postlist'][0] && $variable['postlist'][0]['first']) {
-			$variable['postlist'][0]['message'] = $thread['freemessage'];
-		}
-
 		mobile_core::result(mobile_core::variable($variable));
 	}
 
