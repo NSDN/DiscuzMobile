@@ -42,6 +42,8 @@ class mobile_api {
 			'setting_rewritestatus' => $_G['setting']['rewritestatus'],
 			'forum_threadpay' => $_G['forum_threadpay'] ? 'true' : 'false',
 			'cache_custominfo_postno' => $_G['cache']['custominfo']['postno'],
+			// added by oxyflour
+			'comments' => $GLOBALS['comments'],
 		);
 
 		if(!empty($GLOBALS['threadsortshow'])) {
