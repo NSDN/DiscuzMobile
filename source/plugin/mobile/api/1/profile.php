@@ -26,8 +26,11 @@ class mobile_api {
 		$data = $GLOBALS['space'];
 		unset($data['password'], $data['email'], $data['regip'], $data['lastip'], $data['regip_loc'], $data['lastip_loc']);
 		$variable = array(
+			'list' => $GLOBALS['list'],
 			'space' => $data,
 			'extcredits' => $_G['setting']['extcredits'],
+			'prompt_number' => $_G['member']['newprompt_num'],
+			'notice_number' => $_G['member']['category_num'],
 		);
 		mobile_core::result(mobile_core::variable($variable));
 	}
