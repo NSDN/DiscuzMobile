@@ -6,7 +6,7 @@
  *
  *      $Id: hotthread.php 29235 2012-03-30 04:19:18Z monkey $
  */
-//note 帖子thread >> hotthread(热门主题) @ Discuz! X2.0
+//note 甯栧瓙thread >> hotthread(鐑棬涓婚) @ Discuz! X2.0
 
 if(!defined('IN_MOBILE_API')) {
 	exit('Access Denied');
@@ -16,7 +16,7 @@ include_once 'misc.php';
 
 class mobile_api {
 
-	//note 程序模块执行前需要运行的代码
+	//note 绋嬪簭妯″潡鎵ц鍓嶉渶瑕佽繍琛岀殑浠ｇ爜
 	function common() {
 		global $_G;
 		$perpage = 50;
@@ -41,7 +41,7 @@ class mobile_api {
 		mobile_core::result(mobile_core::variable($variable));
 	}
 
-	//note 程序模板输出前运行的代码
+	//note 绋嬪簭妯℃澘杈撳嚭鍓嶈繍琛岀殑浠ｇ爜
 	function output() {
 	}
 

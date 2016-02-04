@@ -4,8 +4,11 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
  *      This is NOT a freeware, use is subject to license terms
  *
- *      $Id: qrcode.class.php 27783 2012-02-14 07:45:05Z monkey $
+ *      $Id: qrcode.class.php 33590 2013-07-12 06:39:08Z andyzheng $
  */
+if(!defined('IN_DISCUZ')) {
+	exit('Access Denied');
+}
 
 define('QR_MODE_NUL', -1);
 define('QR_MODE_NUM', 0);
