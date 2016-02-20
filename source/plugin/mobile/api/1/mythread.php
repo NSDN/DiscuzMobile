@@ -11,9 +11,9 @@ if(!defined('IN_MOBILE_API')) {
 	exit('Access Denied');
 }
 
-$_GET['mod'] = 'guide';
-$_GET['view'] = 'my';
-include_once 'forum.php';
+$_GET['mod'] = 'space';
+$_GET['do'] = 'thread';
+include_once 'home.php';
 
 class mobile_api {
 
@@ -23,7 +23,7 @@ class mobile_api {
 	function output() {
 		global $_G;
 		$variable = array(
-			'data' => array_values($GLOBALS['data']['my']['threadlist']),
+			'data' => array_values($GLOBALS['list']),
 			'perpage' => $GLOBALS['perpage'],
 			'hiddennum' => $GLOBALS['hiddennum'],
 		);
