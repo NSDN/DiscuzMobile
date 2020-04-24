@@ -48,8 +48,8 @@ function getFirstImageSrc($message) {
 class mobile_api {
 	function common() {
 		global $_G;
-		$tid = intval($_G['gp_tid']);
-
+		$tid = intval($_G['tid']);
+		
 		if ($tid > 0) {
 			$query = DB::query("SELECT message FROM ".DB::table('forum_post')." WHERE tid='$tid' ORDER BY pid LIMIT 5");
 			while ($post = DB::fetch($query)) {
